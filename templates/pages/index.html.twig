@@ -2,21 +2,56 @@
 
 {% block title %}
     Password generator
-    
 {% endblock %}
 
 {% block body %}
     <div class="cover-container d-flex w-100 h-100  mx-auto flex-column">
         <h1 class="mt-5 mb-5 d-flex align-items-center justify-content-center">
-            Password Generator                   
+            Password Generator                            
         </h1>
-       
-        <footer class="py-3 footer mt-auto bg-light">
-            
-            <p class="text-center d-flex align-items-center justify-content-center mb-1 mt-1">
-            Built with &hearts; 2022 Symfony
-            </p>
-        </footer>
 
-    </div>
-{% endblock %}
+        <form>
+            <div>
+                <label for="length">
+                    Length           
+                </label>
+                <select id="length">
+                    {% for i in 12..60 %}
+                        <option value="{{ i }}">
+                            {{ i }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-switch form-check ">
+                <label for="uppercase">
+                    Uppercase letters                    
+                </label>
+                <input type="checkbox" id="uppercase"></div>
+                <div class="form-switch form-check ">
+                    <label for="numbers">
+                        Numbers                                      
+                    </label>
+                    <input type="checkbox" id="numbers"></div>
+                    <div class="form-switch form-check ">
+                        <label for="uppercase">
+                            <label for="special">
+                                Special Characters                                
+                            </label>
+                        </label>
+                        <input type="checkbox" id="special"></div>
+                        <button type="submit" class="btn btn-primary">
+                            Generate password
+                        </button>
+                    </form>
+                 
+                    <footer class="py-3 footer mt-auto bg-light">
+                        <p class="text-center d-flex align-items-center justify-content-center mb-1 mt-1">
+                            Built with &hearts; 2022 Symfony        
+         
+                        </p>
+                    </footer>
+
+                </div>
+            {% endblock %}
+            
