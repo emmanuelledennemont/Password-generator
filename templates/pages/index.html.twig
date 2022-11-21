@@ -2,22 +2,25 @@
 
 {% block title %}
     Password generator
+    
 {% endblock %}
 
 {% block body %}
     <div class="cover-container d-flex w-100 h-100  mx-auto flex-column">
         <h1 class="mt-5 mb-5 d-flex align-items-center justify-content-center">
             Password Generator                            
+                    
         </h1>
 
-        <form>
+        <form methode="get">
             <div>
                 <label for="length">
                     Length           
+                                    
                 </label>
-                <select id="length">
+                <select id="length" name="length">
                     {% for i in 12..60 %}
-                        <option value="{{ i }}">
+                        <option value="{{ i }}" {{ i == 16 ? 'selected'  }}>
                             {{ i }}
                         </option>
                     {% endfor %}
@@ -25,30 +28,32 @@
             </div>
             <div class="form-switch form-check ">
                 <label for="uppercase">
-                    Uppercase letters                    
+                    Uppercase letters                         
                 </label>
-                <input type="checkbox" id="uppercase"></div>
+                <input type="checkbox" id="uppercase" name="uppercase"></div>
+
                 <div class="form-switch form-check ">
                     <label for="numbers">
-                        Numbers                                      
+                        Numbers                                                      
                     </label>
-                    <input type="checkbox" id="numbers"></div>
+                    <input type="checkbox" id="numbers" name="numbers"></div>
+
                     <div class="form-switch form-check ">
                         <label for="uppercase">
                             <label for="special">
-                                Special Characters                                
+                                Special Characters                                                     
                             </label>
                         </label>
-                        <input type="checkbox" id="special"></div>
+
+                        <input type="checkbox" id="special" name="special_characters"></div>
                         <button type="submit" class="btn btn-primary">
-                            Generate password
+                            Generate password             
                         </button>
                     </form>
-                 
+
                     <footer class="py-3 footer mt-auto bg-light">
                         <p class="text-center d-flex align-items-center justify-content-center mb-1 mt-1">
-                            Built with &hearts; 2022 Symfony        
-         
+                            Built with &hearts; 2022 Symfony
                         </p>
                     </footer>
 
