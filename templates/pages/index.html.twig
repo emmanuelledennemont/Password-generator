@@ -12,7 +12,7 @@
                     
         </h1>
 
-        <form methode="get">
+        <form methode="get" action="{{ path ('app_generate_password')}}">
             <div>
                 <label for="length">
                     Length           
@@ -33,10 +33,10 @@
                 <input type="checkbox" id="uppercase" name="uppercase"></div>
 
                 <div class="form-switch form-check ">
-                    <label for="numbers">
-                        Numbers                                                      
+                    <label for="digits">
+                       Digits                                                      
                     </label>
-                    <input type="checkbox" id="numbers" name="numbers"></div>
+                    <input type="checkbox" id="digits" name="digits"></div>
 
                     <div class="form-switch form-check ">
                         <label for="uppercase">
@@ -46,14 +46,14 @@
                         </label>
 
                         <input type="checkbox" id="special" name="special_characters"></div>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn">
                             Generate password             
                         </button>
                     </form>
 
-                    <footer class="py-3 footer mt-auto bg-light">
+                    <footer class="py-3 footer mt-auto">
                         <p class="text-center d-flex align-items-center justify-content-center mb-1 mt-1">
-                            Built with &hearts; 2022 Symfony
+                            Built with &hearts; 2022 by Symfony
                         </p>
                     </footer>
 
