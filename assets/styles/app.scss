@@ -1,8 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&display=swap');
 
 body {
-    background:#3daaf0;
-    color: #f1f1f1;
+    background:#1f2937;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
 }
 
 main{
@@ -16,8 +18,9 @@ footer{
 button{
     background-color:#6c27a1 !important; 
     color:#f1f1f1 !important;
-}
+    transition:color 150ms ease-in-out;
 
-button:hover{
-    color:#edededff !important;
+    &:hover{
+        color:#00ffaa !important;
+    }
 }

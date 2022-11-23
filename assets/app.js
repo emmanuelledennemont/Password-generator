@@ -8,5 +8,17 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
 
+
 // start the Stimulus application
 import './bootstrap';
+
+const btnCopy = document.querySelector('.btn-copy'); 
+const passwordText = document.querySelector('.password-text');
+
+
+btnCopy.addEventListener('click', () => {
+
+    navigator.clipboard.writeText(passwordText.innerText);
+    btnCopy.innerText= "Copied !";
+  
+})
