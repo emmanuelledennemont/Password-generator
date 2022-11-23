@@ -32,7 +32,7 @@ class PagesController extends AbstractController
 
         $password='';
 
-       $password .= $lowercaseLettersSet[random_int(0, count($lowercaseLettersSet)-1)];
+        $password .= $lowercaseLettersSet[random_int(0, count($lowercaseLettersSet)-1)];
 
         if ($uppercase){
             $characters = array_merge($characters, $uppercaseSet);
@@ -57,18 +57,17 @@ class PagesController extends AbstractController
  
        $password = str_split($password);
        
-       $this->secureShuffle($password);
+       $password = $this->secureShuffle($password);
 
        $password = implode('', $password);
 
         return $this->render('pages/password.html.twig',  compact('password'));
     }
 
-    private function secureShuffle(array &$arr): void
+    private function secureShuffle(array $arr): array
     {
         //Source: https://github.com/lamansky/secure-shuffle/blob/master/src/functions.php
 
-            $arr = array_values($arr);
             $length = count($arr);
             for ($i = $length - 1; $i > 0; $i--) {
                 $j = random_int(0, $i);
@@ -76,7 +75,6 @@ class PagesController extends AbstractController
                 $arr[$i] = $arr[$j];
                 $arr[$j] = $temp;
             }
-        
-
+            return $arr;
     }
 }
