@@ -19,8 +19,8 @@
                                     
                 </label>
                 <select id="length" name="length">
-                    {% for i in 12..60 %}
-                        <option value="{{ i }}" {{ i == 16 ? 'selected'  }}>
+                    {% for i in password_min_length..password_max_length %}
+                        <option value="{{ i }}" {{ i == password_default_length ? 'selected'  }}>
                             {{ i }}
                         </option>
                     {% endfor %}

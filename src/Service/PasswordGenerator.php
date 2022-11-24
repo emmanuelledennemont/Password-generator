@@ -20,21 +20,6 @@ class PasswordGenerator
 
         $password = [$this->pickRandomItemAlphabet($lowercaseLettersAlphabet)];
 
-        // if ($uppercase){
-        //     $finalAlphabet = array_merge($finalAlphabet, $uppercaseAlphabet);
-        //     $password[] = $this->pickRandomItemAlphabet($uppercaseAlphabet);
-        // }
-      
-        // if ($digits) {
-        //     $finalAlphabet = array_merge($finalAlphabet, $digitsAlphabet);
-        //     $password[] = $this->pickRandomItemAlphabet($digitsAlphabet);
-        // }
-
-        // if ($specialCharacters) {
-        //     $finalAlphabet = array_merge($finalAlphabet, $specialCharactersAlphabet);
-        //     $password[] = $this->pickRandomItemAlphabet($specialCharactersAlphabet);
-        // }
-
         $contraintsMapping = [
             [$uppercase, $uppercaseAlphabet],
             [$digits, $digitsAlphabet], 
