@@ -11,9 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class PagesController extends AbstractController
 {
     #[Route('/', name: 'app_pages')]
-    public function index(): Response
+    public function home(): Response
     {
-        return $this->render('pages/index.html.twig');
+        return $this->render('pages/home.html.twig');
     }
 
     #[Route('/generate-password', name: 'app_generate_password')]
@@ -22,7 +22,8 @@ class PagesController extends AbstractController
         $passwordGenerator = new PasswordGenerator();
 
         $password = $passwordGenerator->generate(
-            $request->query->getInt('length'),
+            max(min($request->query->getInt('length'), 60), 8),
+            
             $request->query->getBoolean('uppercase'),
             $request->query->getBoolean('digits'),
             $request->query->getBoolean('special_characters'),

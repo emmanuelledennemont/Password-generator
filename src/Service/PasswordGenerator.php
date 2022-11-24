@@ -9,31 +9,47 @@ class PasswordGenerator
         $lowercaseLettersAlphabet = range('a', 'z');
         $uppercaseAlphabet = range('A', 'Z');
         $digitsAlphabet = range(0, 9);
-        $specialCharactersAlphabet = array_merge(
-            range('!', '/'),
-            range(':', '@'),
-            range('[', '`'),
-            range ('{', '~'),
-        );
+        $specialCharactersAlphabet = [  
+        ...range('!', '/'),
+        ...range(':', '@'),
+        ...range('[', '`'),
+        ...range ('{', '~'),
+        ];
 
-        $finalAlphabet =  $lowercaseLettersAlphabet;
+        $finalAlphabet =  [$lowercaseLettersAlphabet];
 
         $password = [$this->pickRandomItemAlphabet($lowercaseLettersAlphabet)];
 
-        if ($uppercase){
-            $finalAlphabet = array_merge($finalAlphabet, $uppercaseAlphabet);
-            $password[] = $this->pickRandomItemAlphabet($uppercaseAlphabet);
-        }
+        // if ($uppercase){
+        //     $finalAlphabet = array_merge($finalAlphabet, $uppercaseAlphabet);
+        //     $password[] = $this->pickRandomItemAlphabet($uppercaseAlphabet);
+        // }
       
-        if ($digits) {
-            $finalAlphabet = array_merge($finalAlphabet, $digitsAlphabet);
-            $password[] = $this->pickRandomItemAlphabet($digitsAlphabet);
+        // if ($digits) {
+        //     $finalAlphabet = array_merge($finalAlphabet, $digitsAlphabet);
+        //     $password[] = $this->pickRandomItemAlphabet($digitsAlphabet);
+        // }
+
+        // if ($specialCharacters) {
+        //     $finalAlphabet = array_merge($finalAlphabet, $specialCharactersAlphabet);
+        //     $password[] = $this->pickRandomItemAlphabet($specialCharactersAlphabet);
+        // }
+
+        $contraintsMapping = [
+            [$uppercase, $uppercaseAlphabet],
+            [$digits, $digitsAlphabet], 
+            [$specialCharacters, $specialCharactersAlphabet] 
+        ];
+
+        foreach ($contraintsMapping as [$constraintEnabled, $constraintAlphabet]) {
+            if ($constraintEnabled) {
+                $finalAlphabet[] = $constraintAlphabet;
+
+                $password[] = $this->pickRandomItemAlphabet($constraintAlphabet);
+            }
         }
 
-        if ($specialCharacters) {
-            $finalAlphabet = array_merge($finalAlphabet, $specialCharactersAlphabet);
-            $password[] = $this->pickRandomItemAlphabet($specialCharactersAlphabet);
-        }
+       $finalAlphabet = array_merge(...$finalAlphabet);
 
        $numberOfCharactersRemaining = $length - count($password);
 
