@@ -12,11 +12,10 @@
                     
         </h1>
 
-        <form methode="get" action="{{ path ('app_generate_password')}}">
+        <form id="js-form" methode="get" action="{{ path ('app_generate_password')}}">
             <div>
                 <label for="length">
-                    Length           
-                                    
+                    Length                        
                 </label>
                 <select id="length" name="length">
                     {% for i in password_min_length..password_max_length %}
@@ -26,6 +25,7 @@
                     {% endfor %}
                 </select>
             </div>
+
             <div class="form-switch form-check ">
                 <label for="uppercase">
                     Uppercase letters                         
@@ -39,13 +39,11 @@
                     <input type="checkbox" id="digits" name="digits"></div>
 
                     <div class="form-switch form-check ">
-                        <label for="uppercase">
                             <label for="special">
                                 Special Characters                                                     
                             </label>
-                        </label>
-
                         <input type="checkbox" id="special" name="special_characters"></div>
+                        
                         <button type="submit" class="btn">
                             Generate password
                         </button>
@@ -60,4 +58,9 @@
 
                 </div>
             {% endblock %}
+
+           {# {% block javascripts %}
+               <script src="assets/app.js" defer></script>
+           {% endblock %} #}
+                
             
