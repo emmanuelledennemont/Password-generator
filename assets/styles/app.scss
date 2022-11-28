@@ -2,25 +2,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&display=swap');
 
 body {
-    background:#F7F4F3;
-    color: #fff;
+    background:#3368e6;
+    color: #030e57;
     font-family: 'Montserrat', sans-serif;
 }
-
+img{
+    width:160px;
+    height:160px;
+    max-width:160px;
+}
 a {
     text-decoration: none;
 }
 
+span {
+    color:#1b55da;
+    font-weight:600 !important;
+}
 main{
     height: 100vh;
 }
 
 footer{
-    background:#3a4268;
+    background:#d2defa;
 }
 
 button{
-    background-color:#6610f2 !important; 
+    background-color: #1b55da !important; 
     color:#f1f1f1 !important;
     transition:color 150ms ease-in-out;
     border:none !important;
@@ -32,11 +40,11 @@ button{
 }
 
 .card{
-    background-color:#1F2937;
+    background-color:#e3ecfd;
 }
 
 .alert-success {
     --bs-alert-color: #3a0f51;
-    --bs-alert-bg: hsl(242deg 100% 90%);
+    --bs-alert-bg: #d2defa;
     --bs-alert-border-color: hsl(242deg 88% 66%);
 }
