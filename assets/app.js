@@ -19,6 +19,11 @@ btnCopy.addEventListener("click", () => {
   btnCopy.innerText = "Copied !";
 });
 
+const btnRefresh = document.querySelector(".btn-refresh");
+
+btnRefresh.addEventListener("click", ()=>{
+  location.reload();
+})
 
 //   const form = document.getElementById("js-form");
 
