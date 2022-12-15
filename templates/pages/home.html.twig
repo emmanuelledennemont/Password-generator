@@ -15,6 +15,8 @@
                 </h1>
             </div>
 
+            {% set length_to_select = app.request.cookies.getInt('app_length', password_default_length) %}
+
             <div class="card-body">
                 <form id="js-form" methode="get" action="{{ path ('app_generate_password') }}">
                     <div class="row">
@@ -25,7 +27,7 @@
                                 </label>
                                 <select id="length state" name="length" class="form-select">
                                     {% for i in password_min_length..password_max_length %}
-                                        <option value="{{ i }}" {{ i == password_default_length ? 'selected' }}>
+                                        <option value="{{ i }}" {{ i == length_to_select ? 'selected' }}>
                                             {{ i }}
                                         </option>
                                     {% endfor %}
@@ -37,26 +39,23 @@
                         <div class="form-check  d-flex flex-column justify-content-end text-start mx-4" style="max-width: 240px;">
                             <div class="form-check form-switch">
                                 <label for="uppercase" class="form-check-label">
-                                    Uppercase letters                                                                     
-                                                                    
+                                    Uppercase letters                             
                                 </label>
 
-                                <input role="switch" type="checkbox" id="uppercase" name="uppercase" class="form-check-input">
+                                <input role="switch" type="checkbox" id="uppercase" name="uppercase" class="form-check-input" {{ app.request.cookies.getBoolean('app_uppercase') ? ' checked' }}>
                             </div>
                                 <div class="form-check form-switch">
                                     <label for="digits" class="form-check-label">
-                                        Digits                            
-                                                                            
+                                        Digits                    
                                     </label>
-                                    <input role="switch" type="checkbox" id="digits" name="digits" class="form-check-input">
+                                    <input role="switch" type="checkbox" id="digits" name="digits" class="form-check-input" {{ app.request.cookies.getBoolean('app_digits') ? ' checked' }}>
                                 </div>
 
                                     <div class="form-check form-switch">
                                         <label for="special" class="form-check-label">
-                                            Special Characters                                                                                    
-                                    
+                                            Special Characters
                                         </label>
-                                        <input role="switch" type="checkbox" id="special" name="special_characters" class="form-check-input"></div>
+                                        <input role="switch" type="checkbox" id="special" name="special_characters" class="form-check-input" {{ app.request.cookies.getBoolean('app_special_characters') ? ' checked' }}></div>
                                     </div>
                                 </div>
                                 <div class="mt-3">

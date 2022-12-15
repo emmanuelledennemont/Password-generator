@@ -44,13 +44,21 @@ class PagesController extends AbstractController
 
         $response = $this->render('pages/password.html.twig',  compact('password'));
 
-        $response->headers->setCookie(new Cookie('app_length', $length, new DateTimeImmutable('+5 years')));
+        $this->setPasswordPreferencesAsCookies($response, $length, $uppercase, $digits, $specialCharacters);
 
-        $response->headers->setCookie(new Cookie('app_uppercase', $uppercase ? :'0', new DateTimeImmutable('+5 years')));
-
-        $response->headers->setCookie(new Cookie('app_digits', $digits ? :'0', new DateTimeImmutable('+5 years')));
-
-        $response->headers->setCookie(new Cookie('app_special_characters', $specialCharacters ? :'0', new DateTimeImmutable('+5 years')));
         return $response;
+    }
+
+    private function setPasswordPreferencesAsCookies(Response $response,int $length, bool $uppercase, bool $digits, bool $specialCharacters): void
+    {
+        $fiveYearsFromDateNow = new DateTimeImmutable('+5 years');
+
+        $response->headers->setCookie(new Cookie('app_length', $length,  $fiveYearsFromDateNow));
+
+        $response->headers->setCookie(new Cookie('app_uppercase', $uppercase ?: '0',  $fiveYearsFromDateNow));
+
+        $response->headers->setCookie(new Cookie('app_digits', $digits ?: '0',  $fiveYearsFromDateNow));
+
+        $response->headers->setCookie(new Cookie('app_special_characters', $specialCharacters ?: '0',  $fiveYearsFromDateNow));
     }
 }
