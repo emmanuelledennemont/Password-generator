@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Service\PasswordGenerator;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use DateTime;
+use DateTimeImmutable;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PagesController extends AbstractController
 {
@@ -28,13 +31,26 @@ class PagesController extends AbstractController
             $this->getParameter('app.password_min_length')
         );
 
+        $uppercase = $request->query->getBoolean('uppercase');
+        $digits = $request->query->getBoolean('digits');
+        $specialCharacters = $request->query->getBoolean('special_characters');
+
         $password = $passwordGenerator->generate(
             $length,
-            $request->query->getBoolean('uppercase'),
-            $request->query->getBoolean('digits'),
-            $request->query->getBoolean('special_characters'),
+            $uppercase,
+            $digits,
+            $specialCharacters,
         );
 
-        return $this->render('pages/password.html.twig',  compact('password'));
+        $response = $this->render('pages/password.html.twig',  compact('password'));
+
+        $response->headers->setCookie(new Cookie('app_length', $length, new DateTimeImmutable('+5 years')));
+
+        $response->headers->setCookie(new Cookie('app_uppercase', $uppercase ? :'0', new DateTimeImmutable('+5 years')));
+
+        $response->headers->setCookie(new Cookie('app_digits', $digits ? :'0', new DateTimeImmutable('+5 years')));
+
+        $response->headers->setCookie(new Cookie('app_special_characters', $specialCharacters ? :'0', new DateTimeImmutable('+5 years')));
+        return $response;
     }
 }
